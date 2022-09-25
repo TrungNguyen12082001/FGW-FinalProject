@@ -6,6 +6,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+/* input[type="checkbox" i] {
+  accent-color: white !important;
+} */
+
 a {
   color: inherit;
   text-decoration: none;
@@ -17,10 +21,10 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
   body {
-    color: white;
-    background: black;
+    color: black;
+    background: white;
   }
 }
