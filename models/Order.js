@@ -24,6 +24,21 @@ const OrderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    foodName: {
+      type: String,
+      required: true,
+      maxLength: 60,
+    },
+    foodQuantity: {
+      type: Number,
+      required: true,
+      maxLength: 200,
+    },
+    extra: {
+      type: String,
+      required: true,
+      maxLength: 60,
+    },
   },
   { timestamps: true }
 );
