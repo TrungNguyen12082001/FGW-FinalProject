@@ -82,6 +82,9 @@ const Cart = () => {
                 customer: shipping.name.full_name,
                 address: shipping.address.address_line_1,
                 total: cart.total,
+                foodName: cart.products[0].title,
+                foodQuantity: cart.quantity,
+                extra: cart.products[0].extras[0].text,
                 method: 1,
               });
             });

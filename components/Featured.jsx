@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styles from "../styles/Featured.module.css";
 import Image from "next/image";
+// import img from "../public/img"
 
 const Featured = () => {
   const [index, setIndex] = useState(0);
-  const images = [];
+  const images = ["/img/pizza2.png", "/img/pizza3.png", "/img/coffee.jpg"];
 
   const handleArrow = (direction) => {
     if (direction === "l") {

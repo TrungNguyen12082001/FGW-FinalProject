@@ -1,12 +1,16 @@
 import axios from "axios";
 import Image from "next/image";
 import React, { useState } from "react";
+import OrderDetail from "../../components/OrderDetail";
 import styles from "../../styles/Admin.module.css";
+import adminOrderStyles from "../../styles/OrderDetailed.module.css";
+import AdminOrderDetail from "./AdminOrderDetail";
 
 const Index = ({ orders, products }) => {
   const [pizzaList, setPizzaList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
-  const status = ["Preparing", "On the way", "Delivered"];
+  const status = ["Preparing", "On the way", "Delivered", "Completed"];
+  const [detail, setDetails] = useState(false);
 
   const handleDelete = async (id) => {
     try {
@@ -35,6 +39,14 @@ const Index = ({ orders, products }) => {
     }
   };
 
+  const handleViewOrderDetail = async (id) => {
+    const res = await axios.get("http://localhost:3000/api/orders/" + id);
+    // setDetails(true);
+    alert(
+      `Customer: ${res.data.customer} \nOrder Foods: ${res.data.foodName} \nExtra Ingredients: ${res.data.extra} \nQuantity: ${res.data.foodQuantity} \nAddress: ${res.data.address}`
+    );
+    return res.data;
+  };
   return (
     <div className={styles.container}>
       <div className={styles.item}>
@@ -89,6 +101,7 @@ const Index = ({ orders, products }) => {
               <th>Payment</th>
               <th>Status</th>
               <th>Action</th>
+              <th>Details</th>
             </tr>
           </tbody>
           {orderList.map((order) => (
@@ -106,11 +119,19 @@ const Index = ({ orders, products }) => {
                     Next Stage
                   </button>
                 </td>
+                <td>
+                  <button onClick={() => handleViewOrderDetail(order._id)}>
+                    Details
+                  </button>
+                </td>
               </tr>
             </tbody>
           ))}
         </table>
       </div>
+      {detail && (
+        <AdminOrderDetail handleViewOrderDetail={handleViewOrderDetail} />
+      )}
     </div>
   );
 };
